@@ -10,6 +10,7 @@ export enum Events {
   update_winners = "update_winners",
   create_game = "create_game",
   start_game = "start_game",
+  turn = "turn",
 }
 
 export type RouterType =
@@ -77,6 +78,7 @@ export type DbType = {
   games: {
     gameId: number | string;
     state: GameState;
+    turnedPlayerId: number | string;
     players: {
       connectionId: string;
       playerId: number | string;
@@ -86,6 +88,16 @@ export type DbType = {
         length: number;
         type: "small" | "medium" | "large" | "huge";
       }[];
+      board: {
+        isOccupied: boolean;
+        isShot: boolean;
+      }[][];
     }[];
   }[];
 };
+
+export enum AttackResultType {
+  miss = "miss",
+  killed = "killed",
+  shot = "shot",
+}

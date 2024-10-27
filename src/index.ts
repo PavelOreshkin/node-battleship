@@ -23,9 +23,6 @@ wss.on("connection", function connection(ws) {
 
   wsWithId.on("message", async function message(request) {
     const parsedRequest = parseRequest(request);
-    console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>");
-    console.log("connectionId: ", wsWithId.id);
-    console.log("parsedRequest: ", parsedRequest);
 
     const responses: {
       personalResponses?: string[];
@@ -64,7 +61,8 @@ wss.on("connection", function connection(ws) {
         }
       });
     }
-    console.dir(db, { depth: null, colors: true });
-    console.log("----------------------------------");
+
+    console.log(">> db: ", db);
+    // console.dir(db, { depth: null, colors: true });
   });
 });

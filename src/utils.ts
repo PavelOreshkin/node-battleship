@@ -13,3 +13,8 @@ export const findCurrentUserByConnectionId = (connectionId: string) => {
   const { users } = db;
   return users.find((user) => user.connectionId === connectionId);
 };
+
+export const createInitialBoard = () =>
+  Array.from({ length: 10 }, () =>
+    Array.from({ length: 10 }, () => ({ isOccupied: false, isShot: false }))
+  );
