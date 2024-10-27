@@ -1,5 +1,5 @@
-import { db } from "./db";
-import { DbType, Events } from "./types";
+import { db } from "../db/db";
+import { DbType, Events } from "../types";
 
 export const checkFinish = (connectionId: string) => {
   const { games, users } = db;

@@ -2,7 +2,7 @@ import { updateRoom, updateWinners } from "./api/forAll";
 import { addShips, attack, createGame, startGame, turn } from "./api/game";
 import { registration } from "./api/personal";
 import { addUserToRoom, createRoom } from "./api/room";
-import { checkFinish } from "./checkFinish";
+import { checkFinish } from "./features/checkFinish";
 import { Events, RouterType } from "./types";
 
 export const router = async ({

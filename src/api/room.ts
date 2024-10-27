@@ -1,11 +1,10 @@
 import { v4 as uuid } from "uuid";
-import { db } from "../db";
+import { db } from "../db/db";
 import { findCurrentUserByConnectionId } from "../utils";
 
 export const createRoom = (connectionId: string) => {
   const { rooms } = db;
   const currentUser = findCurrentUserByConnectionId(connectionId);
-  // TODO проверить
   if (!currentUser) throw new Error("You must be logged in to create a room");
 
   const newRooms = {
@@ -24,7 +23,6 @@ export const addUserToRoom = ({
 }) => {
   const { rooms } = db;
   const currentUser = findCurrentUserByConnectionId(connectionId);
-  // TODO проверить
   if (!currentUser) throw new Error("You must be logged in to create a room");
   const roomIndex = rooms.findIndex((room) => room.roomId === roomId);
   rooms[roomIndex].roomUsers.push(currentUser);

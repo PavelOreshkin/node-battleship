@@ -1,9 +1,9 @@
 import { v4 as uuid } from "uuid";
-import { db } from "../db";
+import { db } from "../db/db";
 import { Events, GameState, RouterType } from "../types";
 import { findCurrentUserByConnectionId, createInitialBoard } from "../utils";
-import { shoot } from "../shoot";
-import { fillBoard } from "../fillBoard";
+import { shoot } from "../features/shoot";
+import { fillBoard } from "../features/fillBoard";
 
 export const createGame = (roomId: string | number) => {
   const { rooms, games } = db;
@@ -115,12 +115,6 @@ export const attack = (
   if (currentGame.turnedPlayerId !== indexPlayer) {
     return null;
   }
-
-  const gamePlayersUsers = currentGame.players;
-
-  const currentPlayerIndex = currentGame.players.findIndex(
-    (player) => player.playerId === indexPlayer
-  );
 
   const enemyPlayerIndex = currentGame.players.findIndex(
     (player) => player.playerId !== indexPlayer

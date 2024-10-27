@@ -1,4 +1,4 @@
-import { DbType, RouterType } from "./types";
+import { DbType, RouterType } from "../types";
 
 export const fillBoard = (
   ships: Extract<RouterType, { type: "add_ships" }>["data"]["ships"],

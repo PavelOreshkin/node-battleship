@@ -1,5 +1,5 @@
-import { db } from "./db";
-import { DbType, RouterType } from "./types";
+import { db } from "../db/db";
+import { DbType, RouterType } from "../types";
 
 const findShipSections = (
   x: number,

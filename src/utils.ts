@@ -1,5 +1,5 @@
 import { RawData } from "ws";
-import { db } from "./db";
+import { db } from "./db/db";
 
 export const parseRequest = (request: RawData) => {
   const parsedRequest = JSON.parse(request.toString());

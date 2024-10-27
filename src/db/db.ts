@@ -1,4 +1,4 @@
-import { DbType } from "./types";
+import { DbType } from "../types";
 
 export const db: DbType = {
   users: [],

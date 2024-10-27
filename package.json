@@ -8,6 +8,7 @@
   "scripts": {
     "start:back": "ts-node-dev --respawn src/index.ts",
     "start:front": "ts-node-dev --respawn src/http_server/index.ts",
+    "start": "npm run start:back && npm run start:front",
     "test": "jest"
   },
   "repository": {

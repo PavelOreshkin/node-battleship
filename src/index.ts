@@ -2,10 +2,8 @@ import WebSocket, { WebSocketServer } from "ws";
 import { v4 as uuid } from "uuid";
 import { parseRequest } from "./utils";
 import { router } from "./router";
-import { db } from "./db";
+import { db } from "./db/db";
 
-// dotenvConfig();
-// const PORT = Number(env.PORT) || 4000;
 const PORT = 3000;
 
 interface CustomWebSocket extends WebSocket {
@@ -23,6 +21,7 @@ wss.on("connection", function connection(ws) {
 
   wsWithId.on("message", async function message(request) {
     const parsedRequest = parseRequest(request);
+    console.log(">>> request: ", parsedRequest);
 
     const responses: {
       personalResponses?: string[];
@@ -32,13 +31,17 @@ wss.on("connection", function connection(ws) {
         response: string;
       }[];
     } = await router({ connectionId: wsWithId.id, parsedRequest });
-    responses.personalResponses?.forEach((response) => wsWithId.send(response));
+    responses.personalResponses?.forEach((response) => {
+      wsWithId.send(response);
+      console.log("<<< result: ", response);
+    });
 
     if (responses.globalResponses && responses.globalResponses.length > 0) {
       wss.clients.forEach((client) => {
         if (client.readyState === WebSocket.OPEN) {
           responses.globalResponses?.forEach((response) => {
             client.send(response);
+            console.log("<<< result: ", response);
           });
         }
       });
@@ -55,14 +58,26 @@ wss.on("connection", function connection(ws) {
             ({ connectionId, response }) => {
               if (customCLient?.id === connectionId) {
                 customCLient.send(response);
+                console.log("<<< result: ", response);
               }
             }
           );
         }
       });
     }
-
-    console.log(">> db: ", db);
-    // console.dir(db, { depth: null, colors: true });
   });
 });
+
+const closeServer = () => {
+  console.log("WebSocket server closed.");
+  wss.clients.forEach((client) => {
+    const customCLient = client as CustomWebSocket;
+    if (customCLient.readyState === WebSocket.OPEN) {
+      console.log("Stopped connection: ", customCLient.id);
+      customCLient.close();
+    }
+  });
+};
+
+process.on("SIGINT", closeServer);
+process.on("SIGTERM", closeServer);
