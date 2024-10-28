@@ -3,6 +3,7 @@ import { addShips, attack, createGame, startGame, turn } from "./api/game";
 import { registration } from "./api/personal";
 import { addUserToRoom, createRoom } from "./api/room";
 import { checkFinish } from "./features/checkFinish";
+import { userValidation } from "./features/userValidation";
 import { Events, RouterType } from "./types";
 
 export const router = async ({
@@ -23,6 +24,13 @@ export const router = async ({
     const { type, data } = parsedRequest;
 
     if (type === Events.reg) {
+      const userValidationResponse = userValidation(data);
+
+      if (userValidationResponse) {
+        return {
+          personalResponses: [userValidationResponse],
+        };
+      }
       const registrationResponse = await registration({
         connectionId,
         user: data,

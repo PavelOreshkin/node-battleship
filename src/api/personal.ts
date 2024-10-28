@@ -11,6 +11,20 @@ export const registration = async ({
 }) => {
   const { name, password } = user;
 
+  const currentUser = db.users.find((user) => user.name === name);
+  if (currentUser) {
+    return JSON.stringify({
+      type: Events.reg,
+      data: JSON.stringify({
+        name,
+        index: currentUser.id,
+        error: false,
+        errorText: "",
+      }),
+      id: 0,
+    });
+  }
+
   const newUserId = uuid();
 
   const newUser = {
