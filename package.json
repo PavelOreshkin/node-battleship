@@ -1,21 +1,43 @@
 {
-    "name": "ws_task",
-    "version": "1.0.0",
-    "description": "Template for the WebSocket remote control task",
-    "main": "index.js",
-    "type": "module",
-    "scripts": {
-        "start": "node ./index.js",
-        "start:dev": "nodemon ./index.js",
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "author": "Andrei Auchynnikau",
-    "keywords": [],
-    "license": "ISC",
-    "devDependencies": {
-        "nodemon": "^2.0.16"
-    },
-    "dependencies": {
-        "ws": "^8.8.0"
-    }
+  "name": "node-websocket",
+  "version": "1.0.0",
+  "description": "This repository is the part of nodejs-assignments https://github.com/AlreadyBored/nodejs-assignments",
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "scripts": {
+    "start:back": "ts-node-dev --respawn src/index.ts",
+    "start:front": "ts-node-dev --respawn src/http_server/index.ts",
+    "start": "start npm run start:back && start npm run start:front"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/PavelOreshkin/nodejs-assignments"
+  },
+  "keywords": [
+    "nodejs",
+    "assignments",
+    "WebSockets"
+  ],
+  "author": "PavelOreshkin",
+  "license": "ISC",
+  "homepage": "https://github.com/PavelOreshkin/nodejs-assignments#readme",
+  "devDependencies": {
+    "@types/jest": "^29.5.13",
+    "@types/node": "^22.7.7",
+    "@types/uuid": "^10.0.0",
+    "@types/ws": "^8.5.12",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.2.5",
+    "ts-loader": "^9.5.1",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.6.3",
+    "webpack": "^5.95.0",
+    "webpack-cli": "^5.1.4"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "uuid": "^10.0.0",
+    "ws": "^8.8.0"
+  }
 }

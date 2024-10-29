@@ -1,31 +1,12 @@
-# RSSchool NodeJS websocket task template
-> Static http server and base task packages. 
-> By default WebSocket client tries to connect to the 3000 port.
+Precondition:
+You have to have nodejs v22
 
-## Installation
-1. Clone/download repo
-2. `npm install`
+For run do next steps: <br />
 
-## Usage
-**Development**
+1. npm i
+2. choose one of commands:
+   a) "npm run start" - for windows system
+   b) "start npm run start:front & start npm run start:back" - command in bash
+   c) run start:back and start:front from package.json
 
-`npm run start:dev`
-
-* App served @ `http://localhost:8181` with nodemon
-
-**Production**
-
-`npm run start`
-
-* App served @ `http://localhost:8181` without nodemon
-
----
-
-**All commands**
-
-Command | Description
---- | ---
-`npm run start:dev` | App served @ `http://localhost:8181` with nodemon
-`npm run start` | App served @ `http://localhost:8181` without nodemon
-
-**Note**: replace `npm` with `yarn` in `package.json` if you use yarn.
+you will see frontend in http://localhost:8181/
